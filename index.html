@@ -1,45 +1,123 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Carolyn Seiler – Artist</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Under Construction</title>
+  <meta name="description" content="Our new site is coming soon." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+
   <style>
-    body { margin:0; font-family: Georgia, serif; background: #fffaf5; color:#333; }
-    .container { max-width: 900px; margin: 0 auto; padding: 3rem 1rem; text-align: center; }
-    h1 { font-size:2.8rem; color:#7d4e2d; margin-bottom:0.5rem; }
-    h2 { font-size:1.5rem; color:#555; margin:1.5rem 0; }
-    p { font-size:1.1rem; line-height:1.6; color:#444; margin-bottom:1.2rem; }
-    figure { margin:2rem 0; }
-    figure img { max-width:100%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
-    .links a { display:inline-block; margin:0.5rem; padding:0.6rem 1.4rem; background:#7d4e2d; color:#fff; text-decoration:none; border-radius:30px; transition:background 0.3s; }
-    .links a:hover { background:#5c3920; }
-    .footer { margin-top:3rem; font-size:0.9rem; color:#666; }
+    :root {
+      --bg1:#f9f9f9; --bg2:#d6e6f5;
+      --text:#222; --button:#111;
+      --glow1: rgba(103, 178, 255, .35);
+      --glow2: rgba(163, 140, 255, .28);
+      --radius: 12px;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 50%, var(--bg1) 100%);
+      color: var(--text);
+      text-align: center;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 40px 20px;
+    }
+    .wrap { max-width: 860px; width: 100%; }
+
+    h1 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin: 0 0 18px; }
+
+    /* GLOW FRAME + FADE-IN IMAGE */
+    .art-wrap {
+      position: relative;
+      margin: 0 auto 18px;
+      padding: 0; /* keeps image edge clean */
+      max-width: 860px;
+      isolation: isolate; /* so the glow sits behind */
+    }
+    .art-wrap::before {
+      content: "";
+      position: absolute; inset: -22px -18px -28px;
+      border-radius: calc(var(--radius) + 22px);
+      background:
+        radial-gradient(120% 80% at 20% 10%, var(--glow1), transparent 60%),
+        radial-gradient(100% 70% at 80% 90%, var(--glow2), transparent 60%);
+      filter: blur(22px);
+      z-index: -1;
+      opacity: .75;
+      animation: glowPulse 6s ease-in-out infinite alternate;
+    }
+
+    img.art {
+      display: block;
+      width: 100%; height: auto;
+      border-radius: var(--radius);
+      box-shadow:
+        0 10px 28px rgba(0,0,0,.18),
+        0 2px 0 rgba(255,255,255,.6) inset;
+      opacity: 0; transform: translateY(8px) scale(.995);
+      animation: fadeIn 900ms cubic-bezier(.2,.7,.2,1) forwards 120ms;
+    }
+
+    p { font-size: 1.1rem; margin: 10px 0; }
+    .address { font-weight: 700; font-size: 1.05rem; margin-top: 6px; }
+
+    .map-link {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      background: var(--button);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform .18s ease, opacity .18s ease;
+    }
+    .map-link:hover { transform: translateY(-2px); opacity: .92; }
+
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes glowPulse {
+      from { opacity: .55; filter: blur(18px); }
+      to   { opacity: .9;  filter: blur(26px); }
+    }
+
+    /* Respect reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      .art-wrap::before, img.art { animation: none; opacity: 1; transform: none; }
+      .map-link { transition: none; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Carolyn Seiler</h1>
-    <h2>Florida-based visual artist & creative studio founder</h2>
-    
-    <p>Originally from Long Island, New York, Carolyn studied art at the University of New Hampshire and received a BFA in painting. She lives with her Search and Rescue husband (a real life hero, now retired) and their occasional cat.</p>
-    <p>Twenty years in Key West shaped this artist's colorful whimsical style. Carolyn paints and draws the world around her — her cats, the hurricanes, or the changing light on the Indian River are all sources of inspiration. She now runs an artist co‑op <strong>“Carolyn Seiler & Friends”</strong> in Cocoa Village FL. :contentReference[oaicite:2]{index=2}</p>
-    
-    <figure><img src="https://via.placeholder.com/800x500.png?text=Artwork+Preview+1" alt="Artwork sample 1"></figure>
-    <figure><img src="https://via.placeholder.com/800x500.png?text=Artwork+Preview+2" alt="Artwork sample 2"></figure>
-    <figure><img src="https://via.placeholder.com/800x500.png?text=Artwork+Preview+3" alt="Artwork sample 3"></figure>
-    <figure><img src="https://via.placeholder.com/800x500.png?text=Artwork+Preview+4" alt="Artwork sample 4"></figure>
-    
-    <div class="links">
-      <a href="mailto:hello@carolynseiler.com">Email Carolyn</a>
-      <a href="https://www.instagram.com" target="_blank">Instagram</a>
+  <main class="wrap" role="main">
+    <h1>🚧 Under Construction 🚧</h1>
+
+    <!-- Replace the filename below with your actual art image -->
+    <div class="art-wrap">
+      <img class="art" src="your-art.jpg" alt="Artwork by Carolyn Seiler">
     </div>
-    
-    <div class="footer">
-      <p>Carolyn Seiler & Friends</p>
-      <p>318 Delannoy Ave, Cocoa Village, Cocoa, FL 32922</p>
-      <p><a href="http://carolynseiler.com" target="_blank">carolynseiler.com</a></p>
-    </div>
-  </div>
+
+    <p>Our new site is coming soon!</p>
+    <p>Or visit us in person at:</p>
+
+    <p class="address">
+      Carolyn Seiler &amp; Friends Artist Co-op<br>
+      318 Delannoy Ave, Cocoa, FL 32922
+    </p>
+
+    <a class="map-link"
+       href="https://www.google.com/maps?q=318+Delannoy+Ave,+Cocoa,+FL+32922"
+       target="_blank" rel="noopener">
+      Open in Google Maps
+    </a>
+  </main>
 </body>
 </html>
